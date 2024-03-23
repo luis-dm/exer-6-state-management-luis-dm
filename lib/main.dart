@@ -7,6 +7,7 @@ import './provider/shoppingcart_provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
+    // add shopping cart provider
     ChangeNotifierProvider(create: (context) => ShoppingCart()),
   ], child: const MyApp()));
 }
@@ -17,19 +18,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false, // remove debug banner
+      title: 'Flutter Demo', // title
       theme: ThemeData(
+        // set theme
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      initialRoute: '/', // set initial route
       routes: {
+        // set routes for the cart, catalog, and checkout screens
         '/cart': (context) => const MyCart(),
         '/products': (context) => const MyCatalog(),
         '/checkout': (context) => const Checkout(),
       },
-      home: const MyCatalog(),
+      home: const MyCatalog(), // set home screen
     );
   }
 }

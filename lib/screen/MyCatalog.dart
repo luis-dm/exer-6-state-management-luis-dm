@@ -12,6 +12,7 @@ class MyCatalog extends StatefulWidget {
 
 class _MyCatalogState extends State<MyCatalog> {
   List<Item> productsCatalog = [
+    // list of products in the catalog
     Item("Shampoo", 10.00, 2),
     Item("Soap", 12, 3),
     Item("Toothpaste", 40, 3),
@@ -26,15 +27,21 @@ class _MyCatalogState extends State<MyCatalog> {
       ),
       body: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
+            // display the products in the catalog as a list
             return ListTile(
-              leading: const Icon(Icons.star),
-              title: Text(
+              // list tile for each product
+              leading: const Icon(Icons.star), // add an icon
+              title: Text(// display the product's name and price
                   "${productsCatalog[index].name} - ${productsCatalog[index].price}"),
               trailing: TextButton(
+                // add a button to add the product to the cart
                 child: const Text("Add"),
                 onPressed: () {
-                  context.read<ShoppingCart>().addItem(productsCatalog[index]);
+                  // when the button is pressed
+                  context.read<ShoppingCart>().addItem(
+                      productsCatalog[index]); // add the product to the cart
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    // show a snackbar message to confirm that the product was added
                     content: Text("${productsCatalog[index].name} added!"),
                     duration: const Duration(seconds: 1, milliseconds: 100),
                   ));
@@ -42,11 +49,13 @@ class _MyCatalogState extends State<MyCatalog> {
               ),
             );
           },
-          itemCount: productsCatalog.length),
+          itemCount: productsCatalog
+              .length), // get the number of products in the catalog
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.shopping_cart),
+        // add a floating action button to navigate to the cart
+        child: const Icon(Icons.shopping_cart), // add an icon
         onPressed: () {
-          Navigator.pushNamed(context, "/cart");
+          Navigator.pushNamed(context, "/cart"); // navigate to the cart
         },
       ),
     );

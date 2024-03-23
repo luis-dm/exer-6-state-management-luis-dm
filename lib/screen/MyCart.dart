@@ -8,6 +8,7 @@ class MyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // cart widget
     return Scaffold(
       appBar: AppBar(
           title: const Text("My Cart"),
@@ -15,30 +16,40 @@ class MyCart extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          getItems(context),
-          computeCost(),
-          const Divider(height: 4, color: Colors.black),
+          getItems(context), // get the items in the cart
+          computeCost(), // compute the total cost and display it
+          const Divider(
+              height: 4,
+              color: Colors
+                  .black), // add a divider between the items and the buttons
           Flexible(
               child: Center(
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                 ElevatedButton(
+                    // button to reset the cart
                     onPressed: () {
-                      context.read<ShoppingCart>().removeAll();
+                      context
+                          .read<ShoppingCart>()
+                          .removeAll(); // remove all items from the cart
                     },
                     child: const Text("Reset")),
                 ElevatedButton(
+                  // button to checkout
                   onPressed: () {
-                    Navigator.pushNamed(context, "/checkout");
+                    Navigator.pushNamed(
+                        context, "/checkout"); // navigate to the checkout page
                   },
                   child: const Text("Checkout"),
                 ),
               ]))),
           TextButton(
+            // button to return to the catalog
             child: const Text("Go back to Product Catalog"),
             onPressed: () {
-              Navigator.pushNamed(context, "/products");
+              Navigator.pushNamed(
+                  context, "/products"); // navigate to the catalog
             },
           ),
         ],
